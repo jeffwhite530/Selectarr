@@ -74,10 +74,10 @@ def parse_query_conditions(query: str) -> typing.List[typing.Dict[str, typing.An
   """
   # Simple parser for basic conditions
   field = pyparsing.Word(pyparsing.alphas, pyparsing.alphanums + "_")
-  operator = pyparsing.oneOf("= != > < >= <= LIKE", caseless=True)
+  operator = pyparsing.one_of("= != > < >= <= LIKE", caseless=True)
   quoted_string = pyparsing.QuotedString('"')
   number = pyparsing.Regex(r'\d+')
-  boolean = pyparsing.oneOf("true false", caseless=True)
+  boolean = pyparsing.one_of("true false", caseless=True)
   value = quoted_string | number | boolean
   
   # Single condition
