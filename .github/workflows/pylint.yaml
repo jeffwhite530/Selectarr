@@ -1,0 +1,45 @@
+name: PyLint
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**/*.py'
+      - '.github/workflows/pylint.yaml'
+      - '.pylintrc'
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+  checks: write
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install pylint
+        run: pip install pylint
+
+      - name: Run PyLint
+        run: |
+          any_check_failed=0
+          while IFS= read -r script; do
+            echo "Checking: $script"
+            if pylint "$script"; then
+              echo "Check passed."
+            else
+              echo "Detected non-zero exit for pylint for $script. Setting pylint runner to failed."
+              any_check_failed=1
+            fi
+          done < <(find . -type f -name "*.py")
+          echo "PyLint run complete"
+          exit $any_check_failed
