@@ -19,12 +19,17 @@ collections:
     from: TV Shows
     description: Unwatched Taskmaster (UK, NZ, AU, ...) episodes
 
-  Simpsons - 90s:
+  Simpsons - 90s Episodes:
     query: WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000
     from: TV Shows
     description: Simpsons episodes of the 1990s
 
-  # Unwatched Movies:
-  #   query: WHERE Played = false AND ProductionYear > 1950
-  #   from: Movies
-  #   description: Movies that haven't been watched yet
+  Movies - Unplayed, newer than 1950:
+    query: WHERE Played = false AND ProductionYear > 1950
+    from: Movies
+    description: Movies that haven't been watched yet
+
+  Movies - Unplayed, older than 1950:
+    query: WHERE Played = false AND ProductionYear < 1950
+    from: Movies
+    description: Old movies that haven't been watched yet
