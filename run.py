@@ -158,6 +158,9 @@ def matches_condition(item: typing.Dict[str, typing.Any], condition: typing.Dict
   elif field == 'productionyear':
     item_value = item.get('ProductionYear', 0)
     value = int(value)
+    # Skip items with invalid/missing production years (0 or None)
+    if not item_value or item_value == 0:
+      return False
   else:
     item_value = item.get(field, '')
   
