@@ -167,17 +167,17 @@ def matches_condition(item: typing.Dict[str, typing.Any], condition: typing.Dict
   # Apply operator
   if operator == '=':
     return item_value == value
-  elif operator == '!=':
+  if operator == '!=':
     return item_value != value
-  elif operator == '>':
+  if operator == '>':
     return item_value > value
-  elif operator == '<':
+  if operator == '<':
     return item_value < value
-  elif operator == '>=':
+  if operator == '>=':
     return item_value >= value
-  elif operator == '<=':
+  if operator == '<=':
     return item_value <= value
-  elif operator == 'LIKE':
+  if operator == 'LIKE':
     return str(value) in str(item_value)
   
   return False
