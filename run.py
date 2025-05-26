@@ -374,7 +374,7 @@ def remove_from_collection(session: requests.Session, base_url: str, collection_
   logger.info(f"Removed {total_removed} items from collection")
 
 
-def create_collection(session: requests.Session, base_url: str, name: str, item_ids: typing.List[str], user_id: str = None) -> typing.Dict[str, typing.Any]:
+def create_collection(session: requests.Session, base_url: str, name: str, item_ids: typing.List[str]) -> typing.Dict[str, typing.Any]:
   """Create a new collection in Jellyfin.
   
   Args:
@@ -519,7 +519,7 @@ def main() -> None:
         else:
           logger.info(f"Creating new collection: {collection_name}")
           try:
-            result = create_collection(session, base_url, collection_name, [], user_id)
+            result = create_collection(session, base_url, collection_name, [])
             collection_id = result.get('Id')
             logger.info(f"Created collection: {collection_name}")
             # Add to existing names to avoid recreating in future iterations
