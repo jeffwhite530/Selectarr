@@ -1,0 +1,30 @@
+---
+main:
+  jellyfin_url: http://jellyfin.jealwh.local
+  jellyfin_user: white
+
+collections:
+  TV Shows - Unplayed:
+    query: WHERE Played = false
+    from: TV Shows
+    description: Episodes that haven't been watched yet
+
+  TV Shows - Played:
+    query: WHERE Played = true
+    from: TV Shows
+    description: Episodes that have been watched ("re-runs")
+
+  Taskmaster - Unplayed:
+    query: WHERE Played = false AND SeriesName LIKE "Taskmaster"
+    from: TV Shows
+    description: Unwatched Taskmaster (UK, NZ, AU, ...) episodes
+
+  Simpsons - 90s:
+    query: WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000
+    from: TV Shows
+    description: Simpsons episodes of the 1990s
+
+  # Unwatched Movies:
+  #   query: WHERE Played = false AND ProductionYear > 1950
+  #   from: Movies
+  #   description: Movies that haven't been watched yet

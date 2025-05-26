@@ -1,0 +1,4 @@
+# Markdown linting config
+# Controls mdl's behavior and style rules
+
+style '.mdl_style.rb'

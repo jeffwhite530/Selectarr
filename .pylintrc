@@ -1,0 +1,5 @@
+[MESSAGES CONTROL]
+disable=line-too-long,
+        bad-indentation,
+        logging-fstring-interpolation,
+        trailing-whitespace
