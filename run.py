@@ -150,6 +150,9 @@ def matches_condition(item: typing.Dict[str, typing.Any], condition: typing.Dict
       # For "Played = true", item is either marked played OR has been played at least once
       item_value = played_status or play_count > 0
       value = True  # We want this to be True for the comparison
+    else:
+      # Invalid boolean value
+      item_value = False
   elif field == 'seriesname':
     item_value = item.get('SeriesName', '').lower()
     value = value.lower()
