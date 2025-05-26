@@ -6,7 +6,6 @@ Selectarr - Smart Collections in Jellyfin - Select media with SQL-like queries.
 import argparse
 import logging
 import os
-import re
 import sys
 import typing
 
