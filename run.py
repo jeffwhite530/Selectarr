@@ -158,23 +158,26 @@ def matches_condition(item: typing.Dict[str, typing.Any], condition: typing.Dict
   elif field == 'productionyear':
     item_value = item.get('ProductionYear', 0)
     value = int(value)
+    # Skip items with invalid/missing production years (0 or None)
+    if not item_value or item_value == 0:
+      return False
   else:
     item_value = item.get(field, '')
   
   # Apply operator
   if operator == '=':
     return item_value == value
-  elif operator == '!=':
+  if operator == '!=':
     return item_value != value
-  elif operator == '>':
+  if operator == '>':
     return item_value > value
-  elif operator == '<':
+  if operator == '<':
     return item_value < value
-  elif operator == '>=':
+  if operator == '>=':
     return item_value >= value
-  elif operator == '<=':
+  if operator == '<=':
     return item_value <= value
-  elif operator == 'LIKE':
+  if operator == 'LIKE':
     return str(value) in str(item_value)
   
   return False
@@ -515,18 +518,18 @@ def main() -> None:
           logger.info(f"[DRY RUN] Would create new collection: {collection_name}")
           # Skip the rest since we can't process without a real collection
           continue
-        else:
-          logger.info(f"Creating new collection: {collection_name}")
-          try:
-            result = create_collection(session, base_url, collection_name, [])
-            collection_id = result.get('Id')
-            logger.info(f"Created collection: {collection_name}")
-            # Add to existing names to avoid recreating in future iterations
-            existing_names.add(collection_name)
-          except Exception as e:
-            logger.error(f"Failed to create collection '{collection_name}': {e}")
-            has_errors = True
-            continue
+        
+        logger.info(f"Creating new collection: {collection_name}")
+        try:
+          result = create_collection(session, base_url, collection_name, [])
+          collection_id = result.get('Id')
+          logger.info(f"Created collection: {collection_name}")
+          # Add to existing names to avoid recreating in future iterations
+          existing_names.add(collection_name)
+        except Exception as e:  # pylint: disable=broad-exception-caught
+          logger.error(f"Failed to create collection '{collection_name}': {e}")
+          has_errors = True
+          continue
       else:
         logger.info(f"Collection '{collection_name}' already exists")
         # Find the collection ID from existing collections
@@ -607,7 +610,7 @@ def main() -> None:
           else:
             logger.info("No items to remove")
             
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-exception-caught
           logger.error(f"Failed to sync collection items: {e}")
           has_errors = True
           continue
