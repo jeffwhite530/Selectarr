@@ -1,0 +1,19 @@
+site_name: Selectarr
+site_url: https://jeffwhite530.github.io/Selectarr/
+repo_url: https://github.com/jeffwhite530/Selectarr
+
+theme:
+  name: readthedocs
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+nav:
+  - About: index.md
+  - Setup & Usage: setup.md
