@@ -1,0 +1,30 @@
+name: Deploy Documentation
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [ "main" ]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yaml'
+      - '.github/workflows/deploy-documentation.yaml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  docs:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pipx install --include-deps mkdocs-material
+      - name: Build and deploy documentation
+        run: mkdocs gh-deploy --force

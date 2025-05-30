@@ -1,0 +1,30 @@
+name: Validate Documentation
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yaml'
+      - '.github/workflows/validate-documentation.yaml'
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+  checks: write
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pipx install --include-deps mkdocs-material
+      - name: Validate documentation build
+        run: |
+          mkdocs build --strict

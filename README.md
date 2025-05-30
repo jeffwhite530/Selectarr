@@ -1,6 +1,8 @@
 # Selectarr
 
-Smart Collections in Jellyfin - Select media with SQL-like queries.
+Smart Collections in [Jellyfin](https://jellyfin.org/) - Select media with SQL-like queries.
+
+Designed to replace Plex's smart playlists feature. Create collections like '90s Simpsons' or 'Toy Story' without needing to add every TV series, episode, or movie one-by-one. Create dynamic collections, such as including only unplayed media.
 
 ## Supported Query Conditions
 
@@ -31,7 +33,7 @@ pip install -r requirements.txt
 ## Setup
 
 1. Get API key from Jellyfin: Settings --> Dashboard --> API Keys
-2. Create a `config.yml` file with your Jellyfin server details and collection definitions
+1. Create a `config.yml` file with your Jellyfin server details and collection definitions
 
 ## Usage
 

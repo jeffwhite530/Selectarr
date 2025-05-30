@@ -14,3 +14,6 @@ exclude_rule 'MD034'
 
 # Trailing punctuation in headers
 rule 'MD026', punctuation: '.,;:!'
+
+# Unordered list indentation
+rule 'MD007', indent: 2
