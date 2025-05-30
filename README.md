@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ## Setup
 
 1. Get API key from Jellyfin: Settings --> Dashboard --> API Keys
-2. Create a `config.yml` file with your Jellyfin server details and collection definitions
+1. Create a `config.yml` file with your Jellyfin server details and collection definitions
 
 ## Usage
 
