@@ -1,8 +1,9 @@
+---
 name: Markdown Lint
 
-on:
+on:  # yamllint disable-line rule:truthy
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
       - '**/*.md'
       - '.github/workflows/markdown-lint.yaml'

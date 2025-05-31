@@ -33,4 +33,3 @@ collections:
   Movies - Unplayed, older than 1940:
     query: WHERE Played = false AND ProductionYear < 1940
     from: Movies
-
