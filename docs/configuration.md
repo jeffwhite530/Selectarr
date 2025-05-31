@@ -14,3 +14,4 @@
   - `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
 
 Look at [config.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config.yml) for more examples.
+
