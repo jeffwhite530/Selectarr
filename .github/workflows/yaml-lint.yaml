@@ -1,13 +1,13 @@
 ---
-name: PyLint
+name: YAML Lint
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
     branches: ["main"]
     paths:
-      - '**/*.py'
-      - '.github/workflows/pylint.yaml'
-      - '.pylintrc'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '.github/workflows/yaml-lint.yaml'
 
 permissions:
   contents: read
@@ -16,7 +16,7 @@ permissions:
   checks: write
 
 jobs:
-  pylint:
+  yamllint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -30,9 +30,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install pylint
+          pip install yamllint
           pip install -r requirements.txt
 
-      - name: Run PyLint
-        run: |
-          find . -type f -name "*.py" -exec pylint --exit-zero {} +
+      - name: Run YAML Lint
+        run: yamllint .
