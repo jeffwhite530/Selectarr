@@ -6,7 +6,7 @@
 - `SeriesName LIKE "The Office"` (string) - matches TV Show/Series name containing the specified text
 - `ProductionYear > 1950` (integer) - filters by production year (supports >, <, =, >=, <=)
 
-### Boolean Logic
+## Boolean Logic
 
 - `AND` - combine multiple conditions
 - Examples:
