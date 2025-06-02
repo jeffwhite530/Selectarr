@@ -6,6 +6,14 @@ Designed to replicate the smart playlists feature of [Plex](https://www.plex.tv/
 
 Documentation can be found here: [https://jeffwhite530.github.io/Selectarr/](https://jeffwhite530.github.io/Selectarr/)
 
+## Container Image
+
+Available as a container image. Create your config.yml and API key then run it with:
+
+```bash
+docker run -e JELLYFIN_API_KEY=your_api_key_here -v $(pwd)/config.yml:/app/config.yml jeffwhite530/selectarr:latest
+```
+
 ## Supported Query Conditions
 
 - `Played = false` (boolean) - filters based on whether media has been watched
