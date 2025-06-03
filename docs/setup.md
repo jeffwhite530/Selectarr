@@ -18,7 +18,7 @@
   - `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
   - `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
 
-Look at [config.yml](config.yml) for examples.
+Look at [config.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config.yml) for examples.
 
 ## Using the Container Image
 
