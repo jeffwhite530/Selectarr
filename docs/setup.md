@@ -1,52 +1,35 @@
-# Setup & Usage
+# Setup
 
-## Installation
-
-Create a Python virtual environment, activate it, update pip, and install requirements:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-## Setup
-
-1. Get API key from Jellyfin: Settings --> Dashboard --> API Keys
+1. Get an API key from Jellyfin: Settings --> Dashboard --> API Keys
 1. Create a `config.yml` file with your Jellyfin server details and collection definitions
 
-## Usage
+## Configuration
 
-Set environment variable and run:
+### Supported Query Conditions
+
+- `Played = false` (boolean) - filters based on whether media has been watched
+- `SeriesName LIKE "The Office"` (string) - matches TV Show/Series name containing the specified text
+- `ProductionYear > 1950` (integer) - filters by production year (supports >, <, =, >=, <=)
+
+### Boolean Logic
+
+- `AND` - combine multiple conditions
+- Examples:
+  - `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
+  - `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
+
+Look at [config.yml](config.yml) for examples.
+
+## Using the Container Image
+
+Selectarr is available as a container image. Create your config.yml and API key then run it with:
 
 ```bash
-export JELLYFIN_API_KEY=your_api_key_here
-python run.py --help
+docker run -e JELLYFIN_API_KEY=your_api_key_here -v $(pwd)/config.yml:/app/config.yml jeffwhite530/selectarr:latest
 ```
 
-For debug output:
+Append options like --debug or --dry-run:
 
 ```bash
-python run.py --debug
-```
-
-## Alternative Setup: Docker
-
-Build image:
-
-```bash
-docker build -t selectarr .
-```
-
-Run container:
-
-```bash
-docker run -e JELLYFIN_API_KEY=your_api_key_here -v $(pwd)/config.yml:/app/config.yml selectarr
-```
-
-For debug output:
-
-```bash
-docker run -e JELLYFIN_API_KEY=your_api_key_here -v $(pwd)/config.yml:/app/config.yml selectarr --debug
+docker run -e JELLYFIN_API_KEY=your_api_key_here -v $(pwd)/config.yml:/app/config.yml jeffwhite530/selectarr:latest --help
 ```

@@ -17,5 +17,5 @@ markdown_extensions:
 
 nav:
   - About: index.md
-  - Configuration: configuration.md
-  - Setup & Usage: setup.md
+  - Setup: setup.md
+  - Building: build.md
