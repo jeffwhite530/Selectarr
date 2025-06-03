@@ -4,12 +4,6 @@ Smart Collections in [Jellyfin](https://jellyfin.org/) - Select media with SQL-l
 
 Designed to replicate the smart playlists feature of [Plex](https://www.plex.tv/). With Selectarr, create collections like '90s Simpsons' or 'Toy Story' without needing to add every TV series, episode, or movie one-by-one. Create dynamic collections, such as including only unplayed media.
 
+This is what Selectarr creates in Jellyfin:
+
 ![Collections in Jellyfin](img/Collections%20in%20Jellyfin.png)
-
-## Container Image
-
-Available as a container image. Create your config.yml and API key then run it with:
-
-```bash
-docker run -e JELLYFIN_API_KEY=your_api_key_here -v $(pwd)/config.yml:/app/config.yml ghcr.io/jeffwhite530/selectarr:latest
-```
