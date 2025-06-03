@@ -27,7 +27,7 @@ Documentation can be found here: [https://jeffwhite530.github.io/Selectarr/](htt
   - `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
   - `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
 
-Look at [config.yml](config.yml) for examples.
+Look at [config_example.yml](config_example.yml) for a full example.
 
 ## Using the Container Image
 

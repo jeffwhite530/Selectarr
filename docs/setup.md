@@ -34,7 +34,7 @@ collections:
 - `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
 - `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
 
-Look at [config.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config.yml) for a full example.
+Look at [config_example.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config_example.yml) for a full example.
 
 ## Using the Container Image
 
