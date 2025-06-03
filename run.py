@@ -58,8 +58,8 @@ def main() -> None:
     config = yaml.safe_load(file)
   logger.debug(f"Loaded config from {args.config}")
   
-  base_url = config['main']['jellyfin_url']
-  jellyfin_user = config['main']['jellyfin_user']
+  base_url = config['jellyfin_server']['url']
+  jellyfin_user = config['jellyfin_server']['user']
   api_token = os.getenv('JELLYFIN_API_KEY')
   if not api_token:
     logger.error("JELLYFIN_API_KEY environment variable not set. Get API key from Jellyfin: Settings --> Dashboard --> API Keys")

@@ -5,6 +5,20 @@
 
 ## Configuration
 
+Selectarr uses a configuration file, written in YAML. Here is a minimal example:
+
+```yaml
+---
+jellyfin_server:
+  url: http://jellyfin.yourdomain
+  user: yourusername
+
+collections:
+  TV Shows - Unplayed:
+    query: WHERE Played = false
+    from: TV Shows
+```
+
 ### Supported Query Conditions
 
 - `Played = false` (boolean) - filters based on whether media has been watched
@@ -14,11 +28,13 @@
 ### Boolean Logic
 
 - `AND` - combine multiple conditions
-- Examples:
-  - `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
-  - `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
 
-Look at [config.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config.yml) for examples.
+### Examples
+
+- `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
+- `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
+
+Look at [config.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config.yml) for a full example.
 
 ## Using the Container Image
 
