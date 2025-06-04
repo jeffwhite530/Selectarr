@@ -1,7 +1,7 @@
 ---
-main:
-  jellyfin_url: http://jellyfin.jealwh.local
-  jellyfin_user: white
+jellyfin_server:
+  url: http://jellyfin.jealwh.local
+  user: white
 
 collections:
   # Episodes that haven't been watched yet

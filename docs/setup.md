@@ -2,8 +2,23 @@
 
 1. Get an API key from Jellyfin: Settings --> Dashboard --> API Keys
 1. Create a `config.yml` file with your Jellyfin server details and collection definitions
+1. Run Selectarr! Either use the provided container image, build your own, or just launch run.py.
 
 ## Configuration
+
+Selectarr uses a configuration file, written in YAML. Here is a minimal example:
+
+```yaml
+---
+jellyfin_server:
+  url: http://jellyfin.yourdomain
+  user: yourusername
+
+collections:
+  TV Shows - Unplayed:
+    query: WHERE Played = false
+    from: TV Shows
+```
 
 ### Supported Query Conditions
 
@@ -14,11 +29,13 @@
 ### Boolean Logic
 
 - `AND` - combine multiple conditions
-- Examples:
-  - `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
-  - `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
 
-Look at [config.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config.yml) for examples.
+### Examples
+
+- `WHERE Played = false AND SeriesName LIKE "Taskmaster"`
+- `WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000`
+
+Look at [config_example.yml](https://github.com/jeffwhite530/Selectarr/blob/main/config_example.yml) for a full example.
 
 ## Using the Container Image
 
