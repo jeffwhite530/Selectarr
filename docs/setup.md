@@ -2,6 +2,7 @@
 
 1. Get an API key from Jellyfin: Settings --> Dashboard --> API Keys
 1. Create a `config.yml` file with your Jellyfin server details and collection definitions
+1. Run Selectarr! Either use the provided container image, build your own, or just launch run.py.
 
 ## Configuration
 
