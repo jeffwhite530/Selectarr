@@ -24,7 +24,7 @@ collections:
 
 - `Played = false` (boolean) - filters based on whether media has been watched
 - `SeriesName LIKE "The Office"` (string) - matches TV Show/Series name containing the specified text
-- `ProductionYear > 1950` (integer) - filters by production year (supports >, <, =, >=, <=)
+- `ProductionYear > 1940` (integer) - filters by production year (supports >, <, =, >=, <=)
 
 ### Boolean Logic
 

@@ -32,7 +32,7 @@ collections:
 
 - `Played = false` (boolean) - filters based on whether media has been watched
 - `SeriesName LIKE "The Office"` (string) - matches TV Show/Series name containing the specified text
-- `ProductionYear > 1950` (integer) - filters by production year (supports >, <, =, >=, <=)
+- `ProductionYear > 1940` (integer) - filters by production year (supports >, <, =, >=, <=)
 
 ### Boolean Logic
 
@@ -70,28 +70,22 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Set environment variable and run:
+Set the environment variable and run Selectarr:
 
 ```bash
 export JELLYFIN_API_KEY=your_api_key_here
 python run.py --help
 ```
 
-Append options like --debug or --dry-run:
-
-```bash
-python run.py --help
-```
-
 ## Alternative Build: Container Image
 
-Build image:
+Build the image:
 
 ```bash
 docker build -t selectarr .
 ```
 
-Run container:
+Run the container:
 
 ```bash
 docker run -e JELLYFIN_API_KEY=your_api_key_here -v $(pwd)/config.yml:/app/config.yml selectarr
