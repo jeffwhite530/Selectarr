@@ -105,7 +105,8 @@ def main() -> None:
     logger.debug(f"User ID for '{jellyfin_user}': {user_id}")
     
     collections = config.get('collections', {})
-    success = selectarr.collection_manager.process_collections(session, base_url, user_id, collections, args.dry_run)
+    add_remove_limit = config.get('jellyfin_server', {}).get('add_remove_limit')
+    success = selectarr.collection_manager.process_collections(session, base_url, user_id, collections, args.dry_run, add_remove_limit)
     
     if not success:
       logger.error("Selectarr completed with errors")

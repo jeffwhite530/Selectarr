@@ -11,16 +11,17 @@ import selectarr.jellyfin_client
 logger = logging.getLogger(__name__)
 
 
-def process_collections(session: requests.Session, base_url: str, user_id: str, collections_config: typing.Dict[str, typing.Any], dry_run: bool) -> bool:
+def process_collections(session: requests.Session, base_url: str, user_id: str, collections_config: typing.Dict[str, typing.Any], dry_run: bool, add_remove_limit: typing.Optional[int] = None) -> bool:
   """Process all collections from configuration.
-  
+
   Args:
     session: HTTP session with retry strategy
     base_url: Jellyfin server URL
     user_id: User ID
     collections_config: Collections configuration dictionary
     dry_run: Whether to simulate changes without making them
-    
+    add_remove_limit: Optional limit on total adds + removes per collection
+
   Returns:
     True if successful, False if errors occurred
   """
@@ -98,7 +99,16 @@ def process_collections(session: requests.Session, base_url: str, user_id: str, 
         
         items_to_add = desired_item_ids - current_item_ids
         items_to_remove = current_item_ids - desired_item_ids
-        
+
+        # Apply add/remove limit if configured
+        if add_remove_limit:
+          total_changes = len(items_to_add) + len(items_to_remove)
+          if total_changes > add_remove_limit:
+            logger.info(f"Limiting changes from {total_changes} to {add_remove_limit}")
+            items_to_add = set(list(items_to_add)[:add_remove_limit])
+            remaining = add_remove_limit - len(items_to_add)
+            items_to_remove = set(list(items_to_remove)[:remaining])
+
         # Add missing items
         if items_to_add:
           if dry_run:

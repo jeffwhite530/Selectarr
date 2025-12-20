@@ -126,6 +126,9 @@ def matches_condition(item: typing.Dict[str, typing.Any], condition: typing.Dict
   if operator == '<=':
     return item_value <= value
   if operator == 'LIKE':
-    return str(value) in str(item_value)
+    result = str(value) in str(item_value)
+    if field == 'seriesname' and not result:
+      logger.debug(f"LIKE miss: '{value}' not in '{item_value}'")
+    return result
   
   return False

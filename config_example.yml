@@ -2,6 +2,8 @@
 jellyfin_server:
   url: http://jellyfin.jealwh.local
   user: white
+  # Optional: limit total adds + removes per collection per run
+  # add_remove_limit: 100
 
 collections:
   # Episodes that haven't been watched yet
