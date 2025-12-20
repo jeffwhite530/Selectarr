@@ -72,10 +72,10 @@ def process_collections(session: requests.Session, base_url: str, user_id: str, 
     # Now search for items to add to the collection
     query = collection_config.get('query', '')
     library_name = collection_config.get('from', collection_config.get('source_collection', ''))
-    
+
     logger.debug(f"Query: {query}")
     logger.debug(f"Library: {library_name}")
-    
+
     if query and library_name:
       try:
         # Get items that should be in the collection based on query

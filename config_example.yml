@@ -17,8 +17,17 @@ collections:
     from: TV Shows
 
   # Unwatched Taskmaster (UK, NZ, AU, ...) episodes
+  # Use OR for shows with localized names (Stormester, Suurmestari, etc.)
   Taskmaster - Unplayed:
-    query: WHERE Played = false AND SeriesName LIKE "Taskmaster"
+    query: >
+      WHERE Played = false AND (
+        SeriesName LIKE "Taskmaster" OR
+        SeriesName LIKE "Stormester" OR
+        SeriesName LIKE "Suurmestari" OR
+        SeriesName LIKE "Le Maître du Jeu" OR
+        SeriesName LIKE "The Brightest Light" OR
+        SeriesName LIKE "Kongen befaler"
+      )
     from: TV Shows
 
   # Simpsons episodes of the 1990s
