@@ -41,7 +41,7 @@ def get_existing_collections(session: requests.Session, base_url: str, user_id: 
   logger.debug(f"Getting existing collections from: {url}")
   logger.debug(f"Request params: {params}")
   
-  response = session.get(url, params=params, timeout=10)
+  response = session.get(url, params=params, timeout=45)
   response.raise_for_status()
   
   result = response.json()
@@ -101,7 +101,7 @@ def get_media_items(session: requests.Session, base_url: str, user_id: str, libr
   
   response = session.get(f"{base_url}/Users/{user_id}/Items", 
                          params=params, 
-                         timeout=10)
+                         timeout=45)
   response.raise_for_status()
   
   result = response.json()
@@ -131,7 +131,7 @@ def get_library_id(session: requests.Session, base_url: str, user_id: str, libra
   """
   # Get user views/libraries
   response = session.get(f"{base_url}/Users/{user_id}/Views", 
-                         timeout=10)
+                         timeout=45)
   response.raise_for_status()
   
   views = response.json().get('Items', [])
@@ -162,7 +162,7 @@ def get_collection_items(session: requests.Session, base_url: str, collection_id
   
   response = session.get(f"{base_url}/Users/{user_id}/Items", 
                          params=params, 
-                         timeout=10)
+                         timeout=45)
   response.raise_for_status()
   
   result = response.json()
@@ -207,7 +207,7 @@ def add_to_collection(session: requests.Session, base_url: str, collection_id: s
     
     response = session.post(f"{base_url}/Collections/{collection_id}/Items", 
                             params=params, 
-                            timeout=10)
+                            timeout=45)
     response.raise_for_status()
     total_added += len(batch)
     logger.info(f"Added {len(batch)} batch of items (total: {total_added}/{len(item_ids)})")
@@ -239,7 +239,7 @@ def remove_from_collection(session: requests.Session, base_url: str, collection_
     
     response = session.delete(f"{base_url}/Collections/{collection_id}/Items", 
                               params=params, 
-                              timeout=10)
+                              timeout=45)
     response.raise_for_status()
     total_removed += len(batch)
     logger.info(f"Removed batch of {len(batch)} items (total: {total_removed}/{len(item_ids)})")
@@ -272,7 +272,7 @@ def create_collection(session: requests.Session, base_url: str, name: str, item_
   logger.debug(f"Request URL: {base_url}/Collections")
   logger.debug(f"Request params: {params}")
   
-  response = session.post(f"{base_url}/Collections", params=params, timeout=10)
+  response = session.post(f"{base_url}/Collections", params=params, timeout=45)
   
   if response.status_code != 200:
     logger.error(f"Collection creation failed with status {response.status_code}")

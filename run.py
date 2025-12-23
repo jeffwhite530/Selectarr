@@ -85,13 +85,13 @@ def main() -> None:
     
     # Get server info
     logger.info("Connecting to Jellyfin server...")
-    response = session.get(f"{base_url}/System/Info/Public", timeout=10)
+    response = session.get(f"{base_url}/System/Info/Public", timeout=45)
     response.raise_for_status()
     server_info = response.json()
     logger.info(f"Connected to Jellyfin server: {server_info.get('ServerName', 'Unknown')}")
     
     # Get user ID
-    response = session.get(f"{base_url}/Users", timeout=10)
+    response = session.get(f"{base_url}/Users", timeout=45)
     response.raise_for_status()
     users = response.json()
     user_id = None
