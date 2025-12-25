@@ -6,21 +6,26 @@ jellyfin_server:
   # add_remove_limit: 100
 
 collections:
-  # Episodes that haven't been watched yet
-  TV Shows - Unplayed:
-    query: WHERE Played = false
+  # Episodes truly never watched (no resume position saved)
+  TV Shows - Never Watched:
+    query: WHERE Played = false AND PlaybackPositionTicks = 0
     from: TV Shows
 
-  # Episodes that have been watched ("re-runs")
+  # Episodes that have been watched to completion (90%+)
   TV Shows - Played:
     query: WHERE Played = true
     from: TV Shows
 
-  # Unwatched Taskmaster (UK, NZ, AU, ...) episodes
+  # Episodes started but not finished (has resume position)
+  TV Shows - In Progress:
+    query: WHERE Played = false AND PlaybackPositionTicks > 0
+    from: TV Shows
+
+  # Never-watched Taskmaster (UK, NZ, AU, ...) episodes
   # Use OR for shows with localized names (Stormester, Suurmestari, etc.)
-  Taskmaster - Unplayed:
+  Taskmaster - Never Watched:
     query: >
-      WHERE Played = false AND (
+      WHERE Played = false AND PlaybackPositionTicks = 0 AND (
         SeriesName LIKE "Taskmaster" OR
         SeriesName LIKE "Stormester" OR
         SeriesName LIKE "Suurmestari" OR
@@ -35,12 +40,12 @@ collections:
     query: WHERE SeriesName LIKE "Simpsons" AND ProductionYear > 1989 AND ProductionYear < 2000
     from: TV Shows
 
-  # Movies that haven't been watched yet
-  Movies - Unplayed, newer than 1940:
-    query: WHERE Played = false AND ProductionYear > 1940
+  # Movies never watched, newer than 1940
+  Movies - Never Watched, newer than 1940:
+    query: WHERE Played = false AND PlaybackPositionTicks = 0 AND ProductionYear > 1940
     from: Movies
 
-  # Old movies that haven't been watched yet
-  Movies - Unplayed, older than 1940:
-    query: WHERE Played = false AND ProductionYear < 1940
+  # Old movies never watched
+  Movies - Never Watched, older than 1940:
+    query: WHERE Played = false AND PlaybackPositionTicks = 0 AND ProductionYear < 1940
     from: Movies

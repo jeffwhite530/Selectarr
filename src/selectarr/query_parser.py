@@ -157,23 +157,18 @@ def _matches_condition(item: typing.Dict[str, typing.Any], condition: typing.Dic
   operator = condition['operator'].upper()
   value = condition['value']
 
-  # Get field value from item
-  if field == 'played':
+  # Get field value from item - UserData fields
+  if field in ('played', 'playcount', 'playbackpositionticks'):
     user_data = item.get('UserData', {})
-    played_status = user_data.get('Played', False)
-    play_count = user_data.get('PlayCount', 0)
-
-    if value.lower() == 'false':
-      # For "Played = false", item must be both not played AND never started
-      item_value = not played_status and play_count == 0
-      value = True  # We want this to be True for the comparison
-    elif value.lower() == 'true':
-      # For "Played = true", item is either marked played OR has been played at least once
-      item_value = played_status or play_count > 0
-      value = True  # We want this to be True for the comparison
-    else:
-      # Invalid boolean value
-      item_value = False
+    if field == 'played':
+      item_value = user_data.get('Played', False)
+      value = value.lower() == 'true'
+    elif field == 'playcount':
+      item_value = user_data.get('PlayCount', 0)
+      value = int(value)
+    elif field == 'playbackpositionticks':
+      item_value = user_data.get('PlaybackPositionTicks', 0)
+      value = int(value)
   elif field == 'seriesname':
     item_value = item.get('SeriesName', '').lower()
     value = value.lower()
